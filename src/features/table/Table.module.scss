@@ -1,0 +1,75 @@
+.container {
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        border: 1px solid #dddddd;
+        border-collapse: collapse;
+        th {
+            font-weight: bold;
+            padding: 5px;
+            background: #efefef;
+            border: 1px solid #dddddd;
+        }
+        td {
+            border: 1px solid #dddddd;
+            padding: 5px;
+        }
+    }
+    .modal {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        position: absolute;
+        width: 395px;
+        height: 233px;
+        left: 442px;
+        top: 283px;
+        background: #F9F9FE;
+        border-radius: 2px;
+        .bigModal {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            position: absolute;
+            width: 413px;
+            height: 576px;
+            left: 434px;
+            top: 96px;
+            background: #F9F9FE;
+            border-radius: 8px;
+            .titleModal {
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 27px;
+                text-align: left;
+            }
+            .containerBtn{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                button{
+                    background: #D7D8EF;
+                    color: #21268F;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
