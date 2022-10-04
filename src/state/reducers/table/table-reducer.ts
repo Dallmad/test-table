@@ -10,9 +10,9 @@ const slice = createSlice({
     createRow(state, action: PayloadAction<TableRowType>) {
       state.unshift(action.payload);
     },
-    setSort(state) {
-      // eslint-disable-next-line no-param-reassign,no-self-assign
-      state = state;
+    setSort(state, action: PayloadAction<TableType>) {
+      // eslint-disable-next-line no-param-reassign
+      state = action.payload;
     },
   },
 });

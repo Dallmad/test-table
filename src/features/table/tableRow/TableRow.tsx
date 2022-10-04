@@ -14,7 +14,6 @@ export const TableRow = ({
 }: TableRowType): ReturnComponentType => {
   return (
     <tr>
-      {/* eslint-disable-next-line no-magic-numbers */}
       <TableCell item={date.slice(0, DATE_LENGTH)} />
       <TableCell item={name} />
       <TableCell item={number} />

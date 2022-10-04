@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @include text(Roboto,20px, 16px, 500);
 
   .table {
     width: 80%;
@@ -14,7 +15,7 @@
     border-collapse: collapse;
 
     th {
-      font-weight: bold;
+      @include text(Roboto,22px, 18px, 700);
       padding: 5px;
       background: #efefef;
       border: 1px solid #dddddd;

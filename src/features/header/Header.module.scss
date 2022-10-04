@@ -1,0 +1,8 @@
+@import 'src/common/styles/mixins';
+@import 'src/common/styles/variables';
+
+.container {
+    text-align: center;
+    margin: 20px;
+    @include text(Roboto,28px, 24px, 900);
+}

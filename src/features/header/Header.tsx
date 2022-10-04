@@ -1,7 +1,9 @@
 import React from 'react';
 
+import style from './Header.module.scss';
+
 import { ReturnComponentType } from 'common';
 
 export const Header = (): ReturnComponentType => {
-  return <div>Header</div>;
+  return <div className={style.container}>Test table</div>;
 };
