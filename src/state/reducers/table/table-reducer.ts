@@ -10,15 +10,21 @@ const slice = createSlice({
     createRow(state, action: PayloadAction<TableRowType>) {
       state.unshift(action.payload);
     },
-    setSort(state, action: PayloadAction<TableType>) {
-      // eslint-disable-next-line no-param-reassign
-      state = action.payload;
+    setSortByName(state) {
+      state.sort((a, b) => (a.name > b.name ? 1 : -1));
+    },
+    setSortByNumber(state) {
+      state.sort((a, b) => (a.number > b.number ? 1 : -1));
+    },
+    setSortByDistance(state) {
+      state.sort((a, b) => (a.distance > b.distance ? 1 : -1));
     },
   },
 });
 
 export const tableReducer = slice.reducer;
-export const { createRow, setSort } = slice.actions;
+export const { createRow, setSortByName, setSortByNumber, setSortByDistance } =
+  slice.actions;
 
 // thunks
 export const fetchRecipes =
