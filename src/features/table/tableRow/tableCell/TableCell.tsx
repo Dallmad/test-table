@@ -1,10 +1,10 @@
 import { ReturnComponentType } from 'common';
 
-export const TableCell = ({ packValue }: PackValueType): ReturnComponentType => {
-  return <td>{packValue}</td>;
+export const TableCell = ({ item }: ItemValueType): ReturnComponentType => {
+  return <td>{item}</td>;
 };
 
 // types
-type PackValueType = {
-  packValue: string | number;
+type ItemValueType = {
+  item: string | number;
 };

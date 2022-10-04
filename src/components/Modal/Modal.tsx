@@ -1,6 +1,11 @@
 import React from 'react';
 
-export const Modal: React.FC<any> = ({ showModal, editShowModal, children }) => {
+export const Modal: React.FC<any> = ({
+  showModal,
+  editShowModal,
+  children,
+  classname,
+}) => {
   if (!showModal) return null;
 
   return (
@@ -32,9 +37,7 @@ export const Modal: React.FC<any> = ({ showModal, editShowModal, children }) => 
           flexFlow: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'lime',
           zIndex: 21,
-          color: '#2a2a2a',
         }}
       >
         {children}

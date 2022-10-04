@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
 
 import style from './Table.module.scss';
 
 import { ReturnComponentType } from 'common';
-import { Modal } from 'components/Modal/Modal';
-import { TableHeader } from 'features/table/tableHeader/TableHeader';
-import { TableRow } from 'features/table/tableRow/TableRow';
-import { createRow, TableRowType } from 'state/reducers/recipes/table-reducer';
+import { Modal } from 'components';
+import { TableHeader, TableRow } from 'features';
+import { AppRootStateType } from 'state';
+import { createRow, TableRowType, TableType } from 'state/reducers/recipes/table-reducer';
 
 export const Table = (): ReturnComponentType => {
   const dispatch = useDispatch();
+
+  const items = useSelector<AppRootStateType, TableType>(state => state.table);
 
   const [newTitle, setNewTitle] = useState('');
   const [number, setNumber] = useState(0);
@@ -39,6 +41,8 @@ export const Table = (): ReturnComponentType => {
     setShowModal(false);
   };
 
+  useEffect(() => {}, [newRow]);
+
   return (
     <div className={style.container}>
       <table className={style.table}>
@@ -46,13 +50,24 @@ export const Table = (): ReturnComponentType => {
           <TableHeader />
         </thead>
         <tbody>
-          <TableRow />
+          {items
+            ? items.map(item => (
+                <TableRow
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  number={item.number}
+                  date={item.date}
+                  distance={item.distance}
+                />
+              ))
+            : ''}
         </tbody>
       </table>
       <button onClick={() => editShowModal(true)} type="button">
         Add
       </button>
-      <Modal editShowModal={editShowModal} showModal={showModal} classname={style.modal}>
+      <Modal editShowModal={editShowModal} showModal={showModal}>
         <div className={style.bigModal}>
           <div className={style.titleModal}>Add</div>
           Название

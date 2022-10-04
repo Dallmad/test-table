@@ -1,17 +1,25 @@
 import React from 'react';
 
 import { ReturnComponentType } from 'common';
-import { TableCell } from 'features/table/tableRow/tableCell/TableCell';
+import { TableCell } from 'features/table/tableRow';
+import { TableRowType } from 'state/reducers/recipes/table-reducer';
 
-const text = 'table cell';
+const DATE_LENGTH = 24;
 
-export const TableRow = ({ cardPacks }: any): ReturnComponentType => {
+export const TableRow = ({
+  name,
+  date,
+  number,
+  distance,
+  id,
+}: TableRowType): ReturnComponentType => {
   return (
     <tr>
-      <TableCell packValue={text} />
-      <TableCell packValue={text} />
-      <TableCell packValue={text} />
-      <TableCell packValue={text} />
+      {/* eslint-disable-next-line no-magic-numbers */}
+      <TableCell item={date.slice(0, DATE_LENGTH)} />
+      <TableCell item={name} />
+      <TableCell item={number} />
+      <TableCell item={distance} />
     </tr>
   );
 };
