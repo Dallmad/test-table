@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ReturnComponentType } from 'common';
 import { TableCell } from 'features/table/tableRow';
-import { TableRowType } from 'state/reducers/recipes/table-reducer';
+import { TableRowType } from 'state/reducers/table/table-reducer';
 
 const DATE_LENGTH = 24;
 
@@ -11,7 +11,6 @@ export const TableRow = ({
   date,
   number,
   distance,
-  id,
 }: TableRowType): ReturnComponentType => {
   return (
     <tr>

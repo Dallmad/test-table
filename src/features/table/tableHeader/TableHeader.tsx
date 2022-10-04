@@ -1,20 +1,45 @@
+import { useDispatch } from 'react-redux';
+
 import { ReturnComponentType } from 'common';
+import { setSort } from 'state/reducers/table/table-reducer';
 
-export const TableHeader = ({ sortPacks }: any): ReturnComponentType => {
-  // const dispatch = useDispatch();
+const headerTitles: HeaderTitlesType = [
+  { id: 1, titleRu: 'Дата', titleEng: 'date' },
+  { id: 2, titleRu: 'Название', titleEng: 'date' },
+  { id: 3, titleRu: 'Количество', titleEng: 'date' },
+  { id: 4, titleRu: 'Расстояние', titleEng: 'date' },
+];
 
-  /*  const onSortPacks = (value: string) => {
-    const sort = +!+sortPacks.slice(0, 1) + value;
+export type HeaderTitlesType = HeaderTitleType[];
+export type HeaderTitleType = {
+  id: number;
+  titleRu: string;
+  titleEng: string;
+};
 
-    dispatch(setSortPacksAC(sort));
-  }; */
+export const TableHeader = (): ReturnComponentType => {
+  const dispatch = useDispatch();
+
+  const onSortPacks = (value: string): void => {
+    // const sort = +!+sortPacks.slice(0, 1) + value;
+
+    console.log(value);
+    // @ts-ignore
+    dispatch(setSort(value));
+  };
 
   return (
     <tr>
-      <th>Дата</th>
-      <th onClick={() => {}}>Название</th>
-      <th onClick={() => {}}>Количество</th>
-      <th onClick={() => {}}>Расстояние</th>
+      {headerTitles.map(({ id, titleRu, titleEng }) => (
+        <th
+          key={id}
+          onClick={() => {
+            onSortPacks(titleEng);
+          }}
+        >
+          {titleRu}
+        </th>
+      ))}
     </tr>
   );
 };

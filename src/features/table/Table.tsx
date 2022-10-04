@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
@@ -9,9 +9,9 @@ import { ReturnComponentType } from 'common';
 import { Modal } from 'components';
 import { TableHeader, TableRow } from 'features';
 import { AppRootStateType } from 'state';
-import { createRow, TableRowType, TableType } from 'state/reducers/recipes/table-reducer';
+import { createRow, TableRowType, TableType } from 'state/reducers/table/table-reducer';
 
-export const Table = (): ReturnComponentType => {
+export const Table = memo((): ReturnComponentType => {
   const dispatch = useDispatch();
 
   const items = useSelector<AppRootStateType, TableType>(state => state.table);
@@ -88,4 +88,4 @@ export const Table = (): ReturnComponentType => {
       </Modal>
     </div>
   );
-};
+});

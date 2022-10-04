@@ -8,13 +8,17 @@ const slice = createSlice({
   initialState,
   reducers: {
     createRow(state, action: PayloadAction<TableRowType>) {
-      state.push(action.payload);
+      state.unshift(action.payload);
+    },
+    setSort(state) {
+      // eslint-disable-next-line no-param-reassign,no-self-assign
+      state = state;
     },
   },
 });
 
 export const tableReducer = slice.reducer;
-export const { createRow } = slice.actions;
+export const { createRow, setSort } = slice.actions;
 
 // thunks
 export const fetchRecipes =

@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 
-import { tableReducer } from 'state/reducers/recipes/table-reducer';
+import { tableReducer } from 'state/reducers/table/table-reducer';
 
 const rootReducer = combineReducers({
   table: tableReducer,
