@@ -3,7 +3,6 @@ import { Dispatch } from 'redux';
 
 const initialState: InitialStateType = {
   sort: '0name',
-  page: 1,
   table: [],
 };
 
@@ -43,7 +42,6 @@ export const fetchRecipes =
 // types
 export type InitialStateType = {
   sort: string;
-  page: number;
   table: TableType;
 };
 export type TableType = TableRowType[];

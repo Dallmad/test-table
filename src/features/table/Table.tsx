@@ -51,7 +51,7 @@ export const Table = memo((): ReturnComponentType => {
     setShowModal(false);
   };
 
-  useEffect(() => {}, [newRow, items, sort]);
+  useEffect(() => {}, [items, sort]);
 
   return (
     <div className={style.container}>
