@@ -3,6 +3,11 @@ import { Dispatch } from 'redux';
 
 const initialState: InitialStateType = {
   sort: '0name',
+  filtration: {
+    field: '',
+    term: '',
+    filter: '',
+  },
   table: [],
 };
 
@@ -16,11 +21,14 @@ const slice = createSlice({
     setSort(state, action: PayloadAction<string>) {
       state.sort = action.payload;
     },
+    setFiltration(state, action: PayloadAction<FiltrationType>) {
+      state.filtration = action.payload;
+    },
   },
 });
 
 export const tableReducer = slice.reducer;
-export const { createRow, setSort } = slice.actions;
+export const { createRow, setSort, setFiltration } = slice.actions;
 
 // thunks
 export const fetchRecipes =
@@ -42,7 +50,13 @@ export const fetchRecipes =
 // types
 export type InitialStateType = {
   sort: string;
+  filtration: FiltrationType;
   table: TableType;
+};
+export type FiltrationType = {
+  field: string;
+  term: string;
+  filter: string;
 };
 export type TableType = TableRowType[];
 export type TableRowType = {

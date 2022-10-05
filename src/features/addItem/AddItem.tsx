@@ -45,10 +45,10 @@ export const AddItem = ({ editShowModal }: AddItemProps): ReturnComponentType =>
           }}
           type="button"
         >
-          cancel
+          Закрыть
         </button>
         <button onClick={() => addItem(newRow)} type="button">
-          save
+          Добавить
         </button>
       </div>
     </div>
