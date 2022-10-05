@@ -1,13 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
 import { ReturnComponentType } from 'common';
-import {
-  setSortByDistance,
-  setSortByName,
-  setSortByNumber,
-} from 'state/reducers/table/table-reducer';
+import { setSort } from 'state/reducers/table/table-reducer';
 
 /* const headerTitles: HeaderTitlesType = [
   { id: 1, titleRu: 'Дата', titleEng: 'date' },
@@ -25,26 +21,14 @@ export type HeaderTitleType = {
 
 export const TableHeader = (): ReturnComponentType => {
   const dispatch = useDispatch();
-  // const table = useSelector<AppRootStateType, TableType>(state => state.table);
 
-  /*
-  const { items, requestSort, sortConfig } = useSortableData(table);
-  const getClassNamesFor = (name: string): void => {
-    if (!sortConfig) {
-      return;
-    }
+  const [upDown, setUpDown] = useState<boolean>(false);
 
-    return sortConfig.key === name ? sortConfig.direction : undefined;
-  };
-*/
-  const sortByName = (): void => {
-    dispatch(setSortByName());
-  };
-  const sortByNumber = (): void => {
-    dispatch(setSortByNumber());
-  };
-  const sortByDistance = (): void => {
-    dispatch(setSortByDistance());
+  const onSort = (value: string): void => {
+    setUpDown(!upDown);
+    const sorted = +upDown + value;
+
+    dispatch(setSort(sorted));
   };
 
   useEffect(() => {}, []);
@@ -52,9 +36,9 @@ export const TableHeader = (): ReturnComponentType => {
   return (
     <tr>
       <th>Дата</th>
-      <th onClick={sortByName}>Название</th>
-      <th onClick={sortByNumber}>Количество</th>
-      <th onClick={sortByDistance}>Расстояние</th>
+      <th onClick={() => onSort('name')}>Название</th>
+      <th onClick={() => onSort('number')}>Количество</th>
+      <th onClick={() => onSort('distance')}>Расстояние</th>
 
       {/* {headerTitles.map(({ id, titleRu, titleEng }) => (
         <th

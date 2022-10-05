@@ -8,18 +8,21 @@ import style from './Table.module.scss';
 import { ReturnComponentType } from 'common';
 import { Modal } from 'components';
 import { TableHeader, TableRow } from 'features';
+import { useSort } from 'hooks/useSort';
 import { AppRootStateType } from 'state';
 import { createRow, TableRowType, TableType } from 'state/reducers/table/table-reducer';
 
 export const Table = memo((): ReturnComponentType => {
   const dispatch = useDispatch();
 
-  const items = useSelector<AppRootStateType, TableType>(state => state.table);
+  const items = useSelector<AppRootStateType, TableType>(state => state.table.table);
+  const sort = useSelector<AppRootStateType, string>(state => state.table.sort);
 
   const [newTitle, setNewTitle] = useState('');
   const [number, setNumber] = useState(0);
   const [distance, setDistance] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const sortedItems = useSort(sort, items);
 
   const editShowModal = (value: boolean): void => {
     setShowModal(value);
@@ -41,7 +44,7 @@ export const Table = memo((): ReturnComponentType => {
     setShowModal(false);
   };
 
-  useEffect(() => {}, [newRow, items]);
+  useEffect(() => {}, [newRow, items, sort]);
 
   return (
     <div className={style.container}>
@@ -50,8 +53,8 @@ export const Table = memo((): ReturnComponentType => {
           <TableHeader />
         </thead>
         <tbody>
-          {items
-            ? items.map(item => (
+          {sortedItems
+            ? sortedItems.map(item => (
                 <TableRow
                   key={item.id}
                   id={item.id}

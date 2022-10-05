@@ -1,30 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
-const initialState: TableType = [];
+const initialState: InitialStateType = {
+  sort: '0name',
+  table: [],
+};
 
 const slice = createSlice({
   name: 'table',
   initialState,
   reducers: {
     createRow(state, action: PayloadAction<TableRowType>) {
-      state.unshift(action.payload);
+      state.table.unshift(action.payload);
     },
-    setSortByName(state) {
-      state.sort((a, b) => (a.name > b.name ? 1 : -1));
-    },
-    setSortByNumber(state) {
-      state.sort((a, b) => (a.number > b.number ? 1 : -1));
-    },
-    setSortByDistance(state) {
-      state.sort((a, b) => (a.distance > b.distance ? 1 : -1));
+    setSort(state, action: PayloadAction<string>) {
+      state.sort = action.payload;
     },
   },
 });
 
 export const tableReducer = slice.reducer;
-export const { createRow, setSortByName, setSortByNumber, setSortByDistance } =
-  slice.actions;
+export const { createRow, setSort } = slice.actions;
 
 // thunks
 export const fetchRecipes =
@@ -44,6 +40,10 @@ export const fetchRecipes =
   };
 
 // types
+export type InitialStateType = {
+  sort: string;
+  table: TableType;
+};
 export type TableType = TableRowType[];
 export type TableRowType = {
   id: string;
