@@ -1,55 +1,32 @@
 import React, { memo, useEffect, useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { v4 } from 'uuid';
+import { useSelector } from 'react-redux';
 
 import style from './Table.module.scss';
 
 import { ReturnComponentType } from 'common';
 import { Modal, Paginator } from 'components';
-import { TableHeader, TableRow } from 'features';
+import { AddItem, TableHeader, TableRow } from 'features';
+import { Filtration } from 'features/filtration/Filtration';
 import { usePagination } from 'hooks/usePagination';
 import { useSort } from 'hooks/useSort';
 import { AppRootStateType } from 'state';
-import { createRow, TableRowType, TableType } from 'state/reducers/table/table-reducer';
+import { TableType } from 'state/reducers/table/table-reducer';
 
 export const Table = memo((): ReturnComponentType => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const items = useSelector<AppRootStateType, TableType>(state => state.table.table);
   const sort = useSelector<AppRootStateType, string>(state => state.table.sort);
 
-  const [newTitle, setNewTitle] = useState('');
-  const [number, setNumber] = useState(0);
-  const [distance, setDistance] = useState(0);
-  const [showModal, setShowModal] = useState(false);
-
+  const [showModalForAddItem, setShowModalForAddItem] = useState(false);
+  const [showModalForFiltration, setShowModalForFiltration] = useState(false);
   const sortedItems = useSort(sort, items);
   const { firstContentIndex, lastContentIndex, page, setPage, totalPages } =
     usePagination({
       contentPerPage: 3,
       count: items.length,
     });
-
-  const editShowModal = (value: boolean): void => {
-    setShowModal(value);
-  };
-
-  const newRow: TableRowType = {
-    id: v4(),
-    date: Date(),
-    name: newTitle,
-    number,
-    distance,
-  };
-
-  const addItem = (newRow: TableRowType): void => {
-    dispatch(createRow(newRow));
-    setNewTitle('');
-    setDistance(0);
-    setNumber(0);
-    setShowModal(false);
-  };
 
   useEffect(() => {}, [items, sort]);
 
@@ -76,27 +53,25 @@ export const Table = memo((): ReturnComponentType => {
             : ''}
         </tbody>
       </table>
-      <button onClick={() => editShowModal(true)} type="button">
-        Add
-      </button>
-      <Modal editShowModal={editShowModal} showModal={showModal}>
-        <div className={style.bigModal}>
-          <div className={style.titleModal}>Add</div>
-          Название
-          <input value={newTitle} onChange={e => setNewTitle(e.currentTarget.value)} />
-          Количество
-          <input value={number} onChange={e => setNumber(+e.currentTarget.value)} />
-          Расстояние
-          <input value={distance} onChange={e => setDistance(+e.currentTarget.value)} />
-          <div className={style.containerBtn}>
-            <button onClick={() => editShowModal(false)} type="button">
-              cancel
-            </button>
-            <button onClick={() => addItem(newRow)} type="button">
-              save
-            </button>
-          </div>
-        </div>
+      <div>
+        <button onClick={() => setShowModalForAddItem(true)} type="button">
+          Add
+        </button>
+        <button
+          onClick={() => {
+            setShowModalForFiltration(true);
+          }}
+          type="button"
+        >
+          Filter
+        </button>
+      </div>
+
+      <Modal editShowModal={setShowModalForAddItem} showModal={showModalForAddItem}>
+        <AddItem editShowModal={setShowModalForAddItem} />
+      </Modal>
+      <Modal editShowModal={setShowModalForFiltration} showModal={showModalForFiltration}>
+        <Filtration editShowModal={setShowModalForFiltration} />
       </Modal>
       <Paginator page={page} setPage={setPage} totalPages={totalPages} />
     </div>

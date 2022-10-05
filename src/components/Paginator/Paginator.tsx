@@ -19,8 +19,8 @@ export const Paginator = ({
 
   const portionCount = Math.ceil(totalPages / portionSize);
   const [portionNumber, setPortionNumber] = useState(1);
-  const leftPortionNumber = (portionNumber - 1) * portionSize + 1;
-  const rightPortionNumber = portionNumber * portionSize;
+  /* const leftPortionNumber = (portionNumber - 1) * portionSize + 1;
+  const rightPortionNumber = portionNumber * portionSize; */
 
   return (
     <div className={s.container}>
@@ -45,7 +45,7 @@ export const Paginator = ({
         {'<'}
       </button>
       {pages
-        .filter(p => p >= leftPortionNumber && p <= rightPortionNumber)
+        // .filter(p => p >= leftPortionNumber && p <= rightPortionNumber)
         .map((p, i) => {
           return (
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions

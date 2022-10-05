@@ -1,11 +1,12 @@
 import React from 'react';
 
-export const Modal: React.FC<any> = ({
+import { ReturnComponentType } from 'common';
+
+export const Modal = ({
   showModal,
   editShowModal,
   children,
-  classname,
-}) => {
+}: any): ReturnComponentType => {
   if (!showModal) return null;
 
   return (

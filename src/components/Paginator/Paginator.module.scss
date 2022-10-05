@@ -7,10 +7,9 @@
   border-radius: 5px;
   margin: 20px 300px;
 
-
   .selectedPage {
     @include flex(row, center, center);
-    @include text(Roboto, 20px, 16px, 700);
+    @include text(Roboto, 20px, 16px, 500);
     border: 1px solid grey;
     width: 30px;
     height: 30px;
@@ -21,19 +20,21 @@
 
   .simplePage {
     @include flex(row, center, center);
-    @include text(Roboto, 20px, 16px, 700);
+    @include text(Roboto, 20px, 16px, 500);
     width: 30px;
     height: 30px;
     text-align: center;
     color: grey;
+    cursor: pointer;
   }
 
   .button {
-    @include text(Roboto, 20px, 16px, 700);
+    @include text(Roboto, 20px, 16px, 500);
     border: none;
     background-color: inherit;
     width: 30px;
     height: 30px;
+    cursor: pointer;
   }
 }
 
