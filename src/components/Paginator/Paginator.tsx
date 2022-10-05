@@ -74,7 +74,7 @@ export const Paginator = ({
         type="button"
         className={s.button}
         onClick={() => {
-          setPortionNumber(totalPages);
+          setPortionNumber(portionCount);
         }}
         disabled={portionCount <= portionNumber}
       >

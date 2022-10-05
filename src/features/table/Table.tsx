@@ -23,12 +23,11 @@ export const Table = memo((): ReturnComponentType => {
   const [number, setNumber] = useState(0);
   const [distance, setDistance] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  // const [currentPage, setCurrentPage] = useState(1);
 
   const sortedItems = useSort(sort, items);
   const { firstContentIndex, lastContentIndex, page, setPage, totalPages } =
     usePagination({
-      contentPerPage: 2,
+      contentPerPage: 3,
       count: items.length,
     });
 
