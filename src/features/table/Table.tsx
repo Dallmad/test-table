@@ -13,6 +13,7 @@ import { usePagination } from 'hooks/usePagination';
 import { useSort } from 'hooks/useSort';
 import { AppRootStateType } from 'state';
 import {
+  fetchItems,
   FiltrationType,
   setFiltration,
   TableType,
@@ -42,7 +43,9 @@ export const Table = memo((): ReturnComponentType => {
     dispatch(setFiltration(emptyFilter));
   };
 
-  useEffect(() => {}, [items, sort, filtration, table]);
+  useEffect(() => {
+    dispatch(fetchItems() as any);
+  }, [items, sort, filtration, table]);
 
   return (
     <div className={style.container}>

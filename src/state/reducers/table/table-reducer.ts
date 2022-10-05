@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
+import { requestAPI } from 'api';
+
 const initialState: InitialStateType = {
   sort: '0name',
   filtration: {
@@ -15,6 +17,9 @@ const slice = createSlice({
   name: 'table',
   initialState,
   reducers: {
+    getItems(state, action: PayloadAction<TableType>) {
+      state.table = action.payload;
+    },
     createRow(state, action: PayloadAction<TableRowType>) {
       state.table.unshift(action.payload);
     },
@@ -28,24 +33,20 @@ const slice = createSlice({
 });
 
 export const tableReducer = slice.reducer;
-export const { createRow, setSort, setFiltration } = slice.actions;
+export const { getItems, createRow, setSort, setFiltration } = slice.actions;
 
 // thunks
-export const fetchRecipes =
-  (from: string, size: string) => async (dispatch: Dispatch) => {
-    try {
-      /* const res = await requestAPI.getRecipes(from, size);
+export const fetchItems = () => async (dispatch: Dispatch) => {
+  try {
+    const res = await requestAPI.getItems();
 
-      console.log(res.data);
-      dispatch(setRecipes(res.data));
-      dispatch(setNumberItems(size));
-      dispatch(setPage(from)); */
-    } catch (error) {
-      /*      if (error instanceof Error) {
-        console.log(`error${error}`);
-      } */
+    dispatch(getItems(res.data as any));
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(`error${error}`);
     }
-  };
+  }
+};
 
 // types
 export type InitialStateType = {

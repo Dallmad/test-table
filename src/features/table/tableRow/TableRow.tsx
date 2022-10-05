@@ -4,8 +4,6 @@ import { ReturnComponentType } from 'common';
 import { TableCell } from 'features/table/tableRow';
 import { TableRowType } from 'state/reducers/table/table-reducer';
 
-const DATE_LENGTH = 24;
-
 export const TableRow = ({
   name,
   date,
@@ -14,7 +12,7 @@ export const TableRow = ({
 }: TableRowType): ReturnComponentType => {
   return (
     <tr>
-      <TableCell item={date.slice(0, DATE_LENGTH)} />
+      <TableCell item={date} />
       <TableCell item={name} />
       <TableCell item={number} />
       <TableCell item={distance} />
