@@ -1,0 +1,42 @@
+@import 'src/common/styles/mixins';
+@import 'src/common/styles/variables';
+
+.container {
+  @include flex(row, center, center);
+  border: 1px solid #EDEDF4;
+  border-radius: 5px;
+  margin: 20px 300px;
+
+
+  .selectedPage {
+    @include flex(row, center, center);
+    @include text(Roboto, 20px, 16px, 700);
+    border: 1px solid grey;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background-color: darkgray;
+    color: black;
+  }
+
+  .simplePage {
+    @include flex(row, center, center);
+    @include text(Roboto, 20px, 16px, 700);
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: grey;
+  }
+
+  .button {
+    @include text(Roboto, 20px, 16px, 700);
+    border: none;
+    background-color: inherit;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+
+
+

@@ -6,8 +6,9 @@ import { v4 } from 'uuid';
 import style from './Table.module.scss';
 
 import { ReturnComponentType } from 'common';
-import { Modal } from 'components';
+import { Modal, Paginator } from 'components';
 import { TableHeader, TableRow } from 'features';
+import { usePagination } from 'hooks/usePagination';
 import { useSort } from 'hooks/useSort';
 import { AppRootStateType } from 'state';
 import { createRow, TableRowType, TableType } from 'state/reducers/table/table-reducer';
@@ -22,7 +23,14 @@ export const Table = memo((): ReturnComponentType => {
   const [number, setNumber] = useState(0);
   const [distance, setDistance] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  // const [currentPage, setCurrentPage] = useState(1);
+
   const sortedItems = useSort(sort, items);
+  const { firstContentIndex, lastContentIndex, page, setPage, totalPages } =
+    usePagination({
+      contentPerPage: 2,
+      count: items.length,
+    });
 
   const editShowModal = (value: boolean): void => {
     setShowModal(value);
@@ -54,16 +62,18 @@ export const Table = memo((): ReturnComponentType => {
         </thead>
         <tbody>
           {sortedItems
-            ? sortedItems.map(item => (
-                <TableRow
-                  key={item.id}
-                  id={item.id}
-                  name={item.name}
-                  number={item.number}
-                  date={item.date}
-                  distance={item.distance}
-                />
-              ))
+            ? sortedItems
+                .slice(firstContentIndex, lastContentIndex)
+                .map(item => (
+                  <TableRow
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    number={item.number}
+                    date={item.date}
+                    distance={item.distance}
+                  />
+                ))
             : ''}
         </tbody>
       </table>
@@ -89,6 +99,7 @@ export const Table = memo((): ReturnComponentType => {
           </div>
         </div>
       </Modal>
+      <Paginator page={page} setPage={setPage} totalPages={totalPages} />
     </div>
   );
 });
