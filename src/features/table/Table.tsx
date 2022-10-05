@@ -19,6 +19,8 @@ import {
   TableType,
 } from 'state/reducers/table/table-reducer';
 
+const CONTENT_PER_PAGE = 6;
+
 export const Table = memo((): ReturnComponentType => {
   const dispatch = useDispatch();
 
@@ -31,12 +33,12 @@ export const Table = memo((): ReturnComponentType => {
   const [showModalForAddItem, setShowModalForAddItem] = useState(false);
   const [showModalForFiltration, setShowModalForFiltration] = useState(false);
   const sortedItems = useSort(sort, items);
+  const table = useFiltration(filtration, sortedItems);
   const { firstContentIndex, lastContentIndex, page, setPage, totalPages } =
     usePagination({
-      contentPerPage: 3,
-      count: items.length,
+      contentPerPage: CONTENT_PER_PAGE,
+      count: table.length,
     });
-  const table = useFiltration(filtration, sortedItems);
   const emptyFilter: FiltrationType = { field: '', term: '', filter: '' };
 
   const onClearFilter = (emptyFilter: FiltrationType): void => {
@@ -45,7 +47,7 @@ export const Table = memo((): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(fetchItems() as any);
-  }, [items, sort, filtration, table]);
+  }, []);
 
   return (
     <div className={style.container}>

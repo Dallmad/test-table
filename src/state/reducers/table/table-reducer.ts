@@ -47,6 +47,17 @@ export const fetchItems = () => async (dispatch: Dispatch) => {
     }
   }
 };
+export const addItem = (item: TableRowType) => async (dispatch: Dispatch) => {
+  try {
+    await requestAPI.addItem(item);
+
+    dispatch(fetchItems() as any);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(`error${error}`);
+    }
+  }
+};
 
 // types
 export type InitialStateType = {

@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 
-import { useDispatch } from 'react-redux';
 import { v4 } from 'uuid';
 
 import { ReturnComponentType } from 'common';
 import { AddItemProps } from 'features/addItem/types';
 import style from 'features/table/Table.module.scss';
-import { createRow, TableRowType } from 'state/reducers/table/table-reducer';
+import { AppActionType, useTypedDispatch } from 'state';
+import { addItem, TableRowType } from 'state/reducers/table/table-reducer';
 
 export const AddItem = ({ editShowModal }: AddItemProps): ReturnComponentType => {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
   const [newTitle, setNewTitle] = useState('');
   const [number, setNumber] = useState(0);
   const [distance, setDistance] = useState(0);
 
-  const addItem = (newRow: TableRowType): void => {
-    dispatch(createRow(newRow));
+  const addNewItem = (newRow: TableRowType): AppActionType => {
+    // dispatch(createRow(newRow));
+    dispatch(addItem(newRow));
     setNewTitle('');
     setDistance(0);
     setNumber(0);
@@ -47,7 +48,7 @@ export const AddItem = ({ editShowModal }: AddItemProps): ReturnComponentType =>
         >
           Закрыть
         </button>
-        <button onClick={() => addItem(newRow)} type="button">
+        <button onClick={() => addNewItem(newRow)} type="button">
           Добавить
         </button>
       </div>
