@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import style from './Table.module.scss';
 
@@ -12,10 +12,14 @@ import { useFiltration } from 'hooks/useFiltration';
 import { usePagination } from 'hooks/usePagination';
 import { useSort } from 'hooks/useSort';
 import { AppRootStateType } from 'state';
-import { FiltrationType, TableType } from 'state/reducers/table/table-reducer';
+import {
+  FiltrationType,
+  setFiltration,
+  TableType,
+} from 'state/reducers/table/table-reducer';
 
 export const Table = memo((): ReturnComponentType => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const items = useSelector<AppRootStateType, TableType>(state => state.table.table);
   const sort = useSelector<AppRootStateType, string>(state => state.table.sort);
@@ -32,8 +36,11 @@ export const Table = memo((): ReturnComponentType => {
       count: items.length,
     });
   const table = useFiltration(filtration, sortedItems);
+  const emptyFilter: FiltrationType = { field: '', term: '', filter: '' };
 
-  console.log(table);
+  const onClearFilter = (emptyFilter: FiltrationType): void => {
+    dispatch(setFiltration(emptyFilter));
+  };
 
   useEffect(() => {}, [items, sort, filtration, table]);
 
@@ -43,7 +50,7 @@ export const Table = memo((): ReturnComponentType => {
         <thead>
           <TableHeader />
         </thead>
-        {/* {!filtration.filter ? (
+        {!filtration.filter ? (
           <tbody>
             {sortedItems
               ? sortedItems
@@ -60,27 +67,28 @@ export const Table = memo((): ReturnComponentType => {
                   ))
               : ''}
           </tbody>
-        ) : ( */}
-        <tbody>
-          {table
-            ? table
-                .slice(firstContentIndex, lastContentIndex)
-                .map(item => (
-                  <TableRow
-                    key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    number={item.number}
-                    date={item.date}
-                    distance={item.distance}
-                  />
-                ))
-            : ''}
-        </tbody>
+        ) : (
+          <tbody>
+            {table
+              ? table
+                  .slice(firstContentIndex, lastContentIndex)
+                  .map(item => (
+                    <TableRow
+                      key={item.id}
+                      id={item.id}
+                      name={item.name}
+                      number={item.number}
+                      date={item.date}
+                      distance={item.distance}
+                    />
+                  ))
+              : ''}
+          </tbody>
+        )}
       </table>
       <div>
         <button onClick={() => setShowModalForAddItem(true)} type="button">
-          Add
+          Добавить запись
         </button>
         <button
           onClick={() => {
@@ -88,7 +96,10 @@ export const Table = memo((): ReturnComponentType => {
           }}
           type="button"
         >
-          Filter
+          Фильтровать
+        </button>
+        <button onClick={() => onClearFilter(emptyFilter)} type="button">
+          Убрать фильтрацию
         </button>
       </div>
 

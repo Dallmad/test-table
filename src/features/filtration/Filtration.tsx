@@ -9,7 +9,7 @@ import style from 'features/table/Table.module.scss';
 import { headerTitles } from 'features/table/tableHeader/TableHeader';
 import { FiltrationType, setFiltration } from 'state/reducers/table/table-reducer';
 
-export const TERMS_FOR_SELECT = ['=', '<', '>', 'содержит'];
+export const TERMS_FOR_SELECT = ['равенство', 'меньше', 'больше', 'содержит'];
 
 export const Filtration = ({ editShowModal }: FiltrationProps): ReturnComponentType => {
   const dispatch = useDispatch();
@@ -29,21 +29,22 @@ export const Filtration = ({ editShowModal }: FiltrationProps): ReturnComponentT
 
   return (
     <div className={style.bigModal}>
-      <div className={style.titleModal}>Add</div>
-      Фильтр по:
+      <div className={style.titleModal}>Настройка фильтра</div>
+      <div>Фильтр по:</div>
       <Select
         className={style.select}
         value={field}
         onChangeOption={setField}
         options={headerTitles.map(({ titleRu }) => titleRu)}
       />
-      Условие:
+      <div>Условие:</div>
       <Select
         className={style.select}
         value={term}
         onChangeOption={setTerm}
         options={TERMS_FOR_SELECT}
       />
+      <div>Данные:</div>
       <input type="text" value={filter} onChange={onChangeFilter} />
       <div className={style.containerBtn}>
         <button

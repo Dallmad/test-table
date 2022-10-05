@@ -7,59 +7,63 @@ export const useFiltration = (
   table: TableType,
 ): TableType => {
   return useMemo(() => {
-    const filteredTable: TableType = [...table];
-
-    console.log(`filtration:${filtration.filter}`);
-
     // filtered by name
     if (filtration.term === '=' && filtration.field === 'Название') {
-      filteredTable.filter(item => item.name.toLowerCase() === filtration.filter);
-    } else if (filtration.term === '>' && filtration.field === 'Название') {
-      filteredTable.filter(item => item.name.toLowerCase() > filtration.filter);
-    } else if (filtration.term === '<' && filtration.field === 'Название') {
-      console.log('not condition');
-      filteredTable.filter(item => item.name.toLowerCase() < filtration.filter);
-    } else if (filtration.term === 'содержит' && filtration.field === 'Название') {
-      console.log('in condition');
-      filteredTable.filter(item =>
+      return table.filter(item => item.name.toLowerCase() === filtration.filter);
+    }
+    if (filtration.term === '>' && filtration.field === 'Название') {
+      return table.filter(item => item.name.toLowerCase() > filtration.filter);
+    }
+    if (filtration.term === '<' && filtration.field === 'Название') {
+      return table.filter(item => item.name.toLowerCase() < filtration.filter);
+    }
+    if (filtration.term === 'содержит' && filtration.field === 'Название') {
+      return table.filter(item =>
         item.name.toLowerCase().includes(filtration.filter.toLowerCase()),
       );
-      console.log(`filterTableLength:${filteredTable.length}`);
     }
     // filtered by date
-    else if (filtration.term === '=' && filtration.field === 'Дата') {
-      filteredTable.filter(item => item.date.toLowerCase() === filtration.filter);
-    } else if (filtration.term === '>' && filtration.field === 'Дата') {
-      filteredTable.filter(item => item.date.toLowerCase() > filtration.filter);
-    } else if (filtration.term === '<' && filtration.field === 'Дата') {
-      filteredTable.filter(item => item.date.toLowerCase() < filtration.filter);
-    } else if (filtration.term === 'содержит' && filtration.field === 'Дата') {
-      filteredTable.filter(item =>
+    if (filtration.term === '=' && filtration.field === 'Дата') {
+      return table.filter(item => item.date.toLowerCase() === filtration.filter);
+    }
+    if (filtration.term === '>' && filtration.field === 'Дата') {
+      return table.filter(item => item.date.toLowerCase() > filtration.filter);
+    }
+    if (filtration.term === '<' && filtration.field === 'Дата') {
+      return table.filter(item => item.date.toLowerCase() < filtration.filter);
+    }
+    if (filtration.term === 'содержит' && filtration.field === 'Дата') {
+      return table.filter(item =>
         item.date.toLowerCase().includes(filtration.filter.toLowerCase()),
       );
     }
     // filtered by number
-    else if (filtration.term === '=' && filtration.field === 'Количество') {
-      filteredTable.map(item => item.number === +filtration.filter);
-    } else if (filtration.term === '>' && filtration.field === 'Количество') {
-      filteredTable.filter(item => item.number > +filtration.filter);
-      console.log(`filterTableLength:${filteredTable.length}`);
-    } else if (filtration.term === '<' && filtration.field === 'Количество') {
-      filteredTable.map(item => item.number < +filtration.filter);
-    } else if (filtration.term === 'содержит' && filtration.field === 'Количество') {
-      filteredTable.map(item => item.number.toString().includes(filtration.filter));
+    if (filtration.term === '=' && filtration.field === 'Количество') {
+      return table.filter(item => item.number === +filtration.filter);
+    }
+    if (filtration.term === '>' && filtration.field === 'Количество') {
+      return table.filter(item => item.number > +filtration.filter);
+    }
+    if (filtration.term === '<' && filtration.field === 'Количество') {
+      return table.filter(item => item.number < +filtration.filter);
+    }
+    if (filtration.term === 'содержит' && filtration.field === 'Количество') {
+      return table.filter(item => item.number.toString().includes(filtration.filter));
     }
     // filtered by distance
-    else if (filtration.term === '=' && filtration.field === 'Расстояние') {
-      filteredTable.filter(item => item.distance === +filtration.filter);
-    } else if (filtration.term === '>' && filtration.field === 'Расстояние') {
-      filteredTable.filter(item => item.distance > +filtration.filter);
-    } else if (filtration.term === '<' && filtration.field === 'Расстояние') {
-      filteredTable.filter(item => item.distance < +filtration.filter);
-    } else if (filtration.term === 'содержит' && filtration.field === 'Расстояние') {
-      filteredTable.filter(item => item.distance.toString().includes(filtration.filter));
+    if (filtration.term === '=' && filtration.field === 'Расстояние') {
+      return table.filter(item => item.distance === +filtration.filter);
+    }
+    if (filtration.term === '>' && filtration.field === 'Расстояние') {
+      return table.filter(item => item.distance > +filtration.filter);
+    }
+    if (filtration.term === '<' && filtration.field === 'Расстояние') {
+      return table.filter(item => item.distance < +filtration.filter);
+    }
+    if (filtration.term === 'содержит' && filtration.field === 'Расстояние') {
+      return table.filter(item => item.distance.toString().includes(filtration.filter));
     }
 
-    return filteredTable;
-  }, [table, filtration]);
+    return table;
+  }, [filtration, table]);
 };
