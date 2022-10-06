@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { TableType } from 'state/reducers/table/table-reducer';
+import { TableType } from 'common';
 
 export const useSort = (sort: string, table: TableType): TableType => {
   return useMemo(() => {

@@ -6,16 +6,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @include text(Roboto,20px, 16px, 500);
+  @include text(Roboto, 20px, 16px, 500);
 
   .table {
     width: 80%;
     margin-bottom: 20px;
-    border: 1px solid #dddddd;
+    border: 2px solid #dddddd;
     border-collapse: collapse;
 
     th {
-      @include text(Roboto,22px, 18px, 700);
+      @include text(Roboto, 22px, 18px, 700);
       padding: 5px;
       background: #efefef;
       border: 1px solid #dddddd;
@@ -27,33 +27,6 @@
       padding: 5px;
       text-align: center;
     }
-
-  }
-
-  .modal {
-    /*        .bigModal {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                align-items: center;
-                position: absolute;
-                width: 250px;
-                height: 300px;
-                background: #2020bd;
-                border-radius: 8px;
-
-                .titleModal {
-
-                    line-height: 27px;
-                    text-align: left;
-                }
-
-                .containerBtn {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-evenly;
-                }
-            }*/
   }
 }
 

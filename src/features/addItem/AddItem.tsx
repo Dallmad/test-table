@@ -2,20 +2,17 @@ import React, { useState } from 'react';
 
 import { v4 } from 'uuid';
 
-import { ReturnComponentType } from 'common';
-import { AddItemProps } from 'features/addItem/types';
+import { EditShowModalType, ReturnComponentType, TableRowType } from 'common';
 import style from 'features/table/Table.module.scss';
-import { AppActionType, useTypedDispatch } from 'state';
-import { addItem, TableRowType } from 'state/reducers/table/table-reducer';
+import { useTypedDispatch, addItem } from 'state';
 
-export const AddItem = ({ editShowModal }: AddItemProps): ReturnComponentType => {
+export const AddItem = ({ editShowModal }: EditShowModalType): ReturnComponentType => {
   const dispatch = useTypedDispatch();
   const [newTitle, setNewTitle] = useState('');
   const [number, setNumber] = useState(0);
   const [distance, setDistance] = useState(0);
 
-  const addNewItem = (newRow: TableRowType): AppActionType => {
-    // dispatch(createRow(newRow));
+  const addNewItem = (newRow: TableRowType): void => {
     dispatch(addItem(newRow));
     setNewTitle('');
     setDistance(0);

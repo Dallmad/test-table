@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import s from './Paginator.module.scss';
 
 import { ReturnComponentType } from 'common';
+import { PaginatorTypeProps } from 'components';
 
 export const Paginator = ({
   page,
@@ -82,11 +83,4 @@ export const Paginator = ({
       </button>
     </div>
   );
-};
-
-// types
-type PaginatorTypeProps = {
-  page: number;
-  setPage(page: number): void;
-  totalPages: number;
 };

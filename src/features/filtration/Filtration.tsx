@@ -2,20 +2,17 @@ import React, { ChangeEvent, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { ReturnComponentType } from 'common';
-import { Select } from 'components/Select/Select';
-import { FiltrationProps } from 'features/filtration/types';
+import { EditShowModalType, FiltrationType, ReturnComponentType } from 'common';
+import { Select } from 'components';
+import { ARRAY_FOR_SELECT, headerTitles } from 'enums';
 import style from 'features/table/Table.module.scss';
-import { headerTitles } from 'features/table/tableHeader/TableHeader';
-import { FiltrationType, setFiltration } from 'state/reducers/table/table-reducer';
+import { setFiltration } from 'state/reducers/table/table-reducer';
 
-export const TERMS_FOR_SELECT = ['равенство', 'меньше', 'больше', 'содержит'];
-
-export const Filtration = ({ editShowModal }: FiltrationProps): ReturnComponentType => {
+export const Filtration = ({ editShowModal }: EditShowModalType): ReturnComponentType => {
   const dispatch = useDispatch();
 
   const [field, setField] = useState(headerTitles[0].titleRu);
-  const [term, setTerm] = useState(TERMS_FOR_SELECT[0]);
+  const [term, setTerm] = useState(ARRAY_FOR_SELECT[0]);
   const [filter, setFilter] = useState('');
 
   const onChangeFilter = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -42,7 +39,7 @@ export const Filtration = ({ editShowModal }: FiltrationProps): ReturnComponentT
         className={style.select}
         value={term}
         onChangeOption={setTerm}
-        options={TERMS_FOR_SELECT}
+        options={ARRAY_FOR_SELECT}
       />
       <div>Данные:</div>
       <input type="text" value={filter} onChange={onChangeFilter} />

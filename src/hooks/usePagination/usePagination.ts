@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { UsePaginationProps, UsePaginationReturn } from './types';
+
 export const usePagination = ({
   contentPerPage,
   count,
@@ -26,16 +28,4 @@ export const usePagination = ({
     lastContentIndex,
     page,
   };
-};
-
-type UsePaginationProps = {
-  contentPerPage: number;
-  count: number;
-};
-type UsePaginationReturn = {
-  page: number;
-  totalPages: number;
-  firstContentIndex: number;
-  lastContentIndex: number;
-  setPage: (page: number) => void;
 };

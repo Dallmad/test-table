@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { ReturnComponentType } from 'common';
-import { TableCell } from 'features/table/tableRow';
-import { TableRowType } from 'state/reducers/table/table-reducer';
+import { ReturnComponentType, TableRowType } from 'common';
+import { TableCell } from 'features';
 
 const MAX_DATE_LENGTH = 24;
 

@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Dispatch } from 'redux';
 
-import { requestAPI } from 'api';
+import { InitialStateType } from './types';
+
+import { FiltrationType, TableType } from 'common';
 
 const initialState: InitialStateType = {
   sort: '0name',
@@ -20,9 +21,6 @@ const slice = createSlice({
     getItems(state, action: PayloadAction<TableType>) {
       state.table = action.payload;
     },
-    createRow(state, action: PayloadAction<TableRowType>) {
-      state.table.unshift(action.payload);
-    },
     setSort(state, action: PayloadAction<string>) {
       state.sort = action.payload;
     },
@@ -33,48 +31,4 @@ const slice = createSlice({
 });
 
 export const tableReducer = slice.reducer;
-export const { getItems, createRow, setSort, setFiltration } = slice.actions;
-
-// thunks
-export const fetchItems = () => async (dispatch: Dispatch) => {
-  try {
-    const res = await requestAPI.getItems();
-
-    dispatch(getItems(res.data as any));
-  } catch (error) {
-    if (error instanceof Error) {
-      console.log(`error${error}`);
-    }
-  }
-};
-export const addItem = (item: TableRowType) => async (dispatch: Dispatch) => {
-  try {
-    await requestAPI.addItem(item);
-
-    dispatch(fetchItems() as any);
-  } catch (error) {
-    if (error instanceof Error) {
-      console.log(`error${error}`);
-    }
-  }
-};
-
-// types
-export type InitialStateType = {
-  sort: string;
-  filtration: FiltrationType;
-  table: TableType;
-};
-export type FiltrationType = {
-  field: string;
-  term: string;
-  filter: string;
-};
-export type TableType = TableRowType[];
-export type TableRowType = {
-  id: string;
-  date: Date;
-  name: string;
-  number: number;
-  distance: number;
-};
+export const { getItems, setSort, setFiltration } = slice.actions;

@@ -1,3 +1,3 @@
-export type AddItemProps = {
+export type EditShowModalType = {
   editShowModal: (showModal: boolean) => void;
 };

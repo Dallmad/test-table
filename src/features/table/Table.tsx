@@ -4,20 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import style from './Table.module.scss';
 
-import { ReturnComponentType } from 'common';
+import { FiltrationType, ReturnComponentType, TableType } from 'common';
 import { Modal, Paginator } from 'components';
-import { AddItem, TableHeader, TableRow } from 'features';
-import { Filtration } from 'features/filtration/Filtration';
-import { useFiltration } from 'hooks/useFiltration';
-import { usePagination } from 'hooks/usePagination';
-import { useSort } from 'hooks/useSort';
-import { AppRootStateType } from 'state';
-import {
-  fetchItems,
-  FiltrationType,
-  setFiltration,
-  TableType,
-} from 'state/reducers/table/table-reducer';
+import { AddItem, TableHeader, TableRow, Filtration } from 'features';
+import { useFiltration, usePagination, useSort } from 'hooks';
+import { AppRootStateType, fetchItems, setFiltration } from 'state';
 
 const CONTENT_PER_PAGE = 6;
 

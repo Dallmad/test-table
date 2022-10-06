@@ -1,12 +1,13 @@
 import React from 'react';
 
 import { ReturnComponentType } from 'common';
+import { ModalType } from 'components';
 
 export const Modal = ({
   showModal,
   editShowModal,
   children,
-}: any): ReturnComponentType => {
+}: ModalType): ReturnComponentType => {
   if (!showModal) return null;
 
   return (

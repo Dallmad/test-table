@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { combineReducers } from 'redux';
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 
-import { tableReducer } from 'state/reducers/table/table-reducer';
+import { tableReducer } from 'state';
 
 const rootReducer = combineReducers({
   table: tableReducer,
