@@ -4,7 +4,7 @@ import { InitialStateType } from './types';
 
 import { FiltrationType, TableType } from 'common';
 
-const initialState: InitialStateType = {
+export const initialState: InitialStateType = {
   sort: '0name',
   filtration: {
     field: '',
