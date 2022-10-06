@@ -24,17 +24,19 @@ export const useFiltration = (
     }
     // filtered by date
     if (filtration.term === '=' && filtration.field === 'Дата') {
-      return table.filter(item => item.date.toLowerCase() === filtration.filter);
+      return table.filter(
+        item => item.date.toString().toLowerCase() === filtration.filter,
+      );
     }
     if (filtration.term === '>' && filtration.field === 'Дата') {
-      return table.filter(item => item.date.toLowerCase() > filtration.filter);
+      return table.filter(item => item.date.toString().toLowerCase() > filtration.filter);
     }
     if (filtration.term === '<' && filtration.field === 'Дата') {
-      return table.filter(item => item.date.toLowerCase() < filtration.filter);
+      return table.filter(item => item.date.toString().toLowerCase() < filtration.filter);
     }
     if (filtration.term === 'содержит' && filtration.field === 'Дата') {
       return table.filter(item =>
-        item.date.toLowerCase().includes(filtration.filter.toLowerCase()),
+        item.date.toString().includes(filtration.filter.toLowerCase()),
       );
     }
     // filtered by number

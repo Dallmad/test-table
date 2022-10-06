@@ -5,6 +5,6 @@ export const TableCell = ({ item }: ItemValueType): ReturnComponentType => {
 };
 
 // types
-type ItemValueType = {
+export type ItemValueType = {
   item: string | number;
 };

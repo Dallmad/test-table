@@ -24,7 +24,7 @@ export const AddItem = ({ editShowModal }: AddItemProps): ReturnComponentType =>
   };
   const newRow: TableRowType = {
     id: v4(),
-    date: Date(),
+    date: new Date(),
     name: newTitle,
     number,
     distance,

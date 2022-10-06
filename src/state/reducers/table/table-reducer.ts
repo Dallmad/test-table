@@ -73,7 +73,7 @@ export type FiltrationType = {
 export type TableType = TableRowType[];
 export type TableRowType = {
   id: string;
-  date: string;
+  date: Date;
   name: string;
   number: number;
   distance: number;
