@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 
 import { v4 } from 'uuid';
 
+import style from './AddItem.module.scss';
+
 import { EditShowModalType, ReturnComponentType, TableRowType } from 'common';
-import style from 'features/table/Table.module.scss';
 import { useTypedDispatch, addItem } from 'state';
 
 export const AddItem = ({ editShowModal }: EditShowModalType): ReturnComponentType => {
@@ -29,13 +30,27 @@ export const AddItem = ({ editShowModal }: EditShowModalType): ReturnComponentTy
 
   return (
     <div className={style.bigModal}>
-      <div className={style.titleModal}>Add</div>
+      <div className={style.titleModal}>Добавить</div>
       Название
-      <input value={newTitle} onChange={e => setNewTitle(e.currentTarget.value)} />
+      <input
+        value={newTitle}
+        onChange={e => setNewTitle(e.currentTarget.value)}
+        type="text"
+      />
       Количество
-      <input value={number} onChange={e => setNumber(+e.currentTarget.value)} />
+      <input
+        value={number}
+        onChange={e => setNumber(+e.currentTarget.value)}
+        type="number"
+        min={0}
+      />
       Расстояние
-      <input value={distance} onChange={e => setDistance(+e.currentTarget.value)} />
+      <input
+        value={distance}
+        onChange={e => setDistance(+e.currentTarget.value)}
+        type="number"
+        min={0}
+      />
       <div className={style.containerBtn}>
         <button
           onClick={() => {

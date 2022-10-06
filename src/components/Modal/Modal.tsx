@@ -31,8 +31,6 @@ export const Modal = ({
       <div
         style={{
           position: 'fixed',
-          top: '50%',
-          left: '50%',
           width: 0,
           height: 0,
           display: 'flex',

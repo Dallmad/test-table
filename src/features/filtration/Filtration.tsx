@@ -2,10 +2,11 @@ import React, { ChangeEvent, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
+import style from './Filtration.module.scss';
+
 import { EditShowModalType, FiltrationType, ReturnComponentType } from 'common';
 import { Select } from 'components';
 import { ARRAY_FOR_SELECT, headerTitles } from 'enums';
-import style from 'features/table/Table.module.scss';
 import { setFiltration } from 'state/reducers/table/table-reducer';
 
 export const Filtration = ({ editShowModal }: EditShowModalType): ReturnComponentType => {
@@ -53,7 +54,7 @@ export const Filtration = ({ editShowModal }: EditShowModalType): ReturnComponen
           Закрыть
         </button>
         <button onClick={() => onApplyFilter(filtration)} type="button">
-          Применить фильтр
+          Применить
         </button>
       </div>
     </div>

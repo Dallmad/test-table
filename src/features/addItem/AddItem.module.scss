@@ -1,0 +1,52 @@
+@import 'src/common/styles/mixins';
+
+.bigModal {
+  @include flex(column, space-between, start);
+  background-color: #efefef;
+  min-width: 300px;
+  min-height: 300px;
+  padding: 20px;
+  @include text(Roboto, 22px, 18px, 500);
+  border-radius: 10px;
+
+  .titleModal {
+    margin-left: 50%;
+    margin-top: -15px;
+    transform: translate(-50%, 50%);
+    @include text(Roboto, 28px, 24px, 700);
+  }
+
+  input {
+    @include text(Roboto, 22px, 18px, 500);
+    width: 292px;
+    background-color: #efefef;
+    border: 2px solid #ababab;
+    border-radius: 5px;
+    margin-top: -20px;
+
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+
+  .containerBtn {
+    @include flex(row, space-arround, center);
+
+    button {
+      @include text(Roboto, 22px, 18px, 500);
+      min-width: 140px;
+      background-color: #efefef;
+      border: 2px solid #ababab;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #bebebe;
+      }
+
+      &:first-child {
+        margin-right: 20px;
+      }
+    }
+  }
+}
