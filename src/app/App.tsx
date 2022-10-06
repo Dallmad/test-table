@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { AppRoutes } from 'app/Routes/AppRoutes';
+import { AppRoutes } from 'app';
 import { ReturnComponentType } from 'common';
 import { Header } from 'features';
 
