@@ -5,5 +5,5 @@ import style from './Header.module.scss';
 import { ReturnComponentType } from 'common';
 
 export const Header = (): ReturnComponentType => {
-  return <div className={style.container}>Test table</div>;
+  return <h2 className={style.container}>Тестовая таблица</h2>;
 };

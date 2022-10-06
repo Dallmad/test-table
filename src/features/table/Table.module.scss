@@ -7,27 +7,54 @@
   justify-content: center;
   align-items: center;
   @include text(Roboto, 20px, 16px, 500);
+  cursor: default;
 
   .table {
     width: 80%;
     margin-bottom: 20px;
-    border: 2px solid #dddddd;
+    border: 2px solid #ababab;
     border-collapse: collapse;
 
     th {
       @include text(Roboto, 22px, 18px, 700);
       padding: 5px;
       background: #efefef;
-      border: 1px solid #dddddd;
+      border: 2px solid #ababab;
       width: 200px;
+      cursor: pointer;
+      &:hover {
+        background-color: #bebebe;
+      }
+      &:first-child {
+        cursor: default;
+        background-color: #efefef;
+      }
     }
 
     td {
-      border: 1px solid #dddddd;
+      border: 2px solid #ababab;
       padding: 5px;
       text-align: center;
     }
   }
+
+  .button {
+    @include flex(row, space-arround, center);
+
+    button {
+      @include text(Roboto, 22px, 18px, 500);
+      min-width: 200px;
+      margin-right: 20px;
+      background-color: #efefef;
+      border: 2px solid #ababab;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background-color: #bebebe;
+      }
+    }
+  }
+
 }
 
 

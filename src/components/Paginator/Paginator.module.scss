@@ -26,15 +26,24 @@
     text-align: center;
     color: grey;
     cursor: pointer;
+    border: 1px solid white;
+    &:hover {
+      border: 1px solid grey;
+      background-color: #bebebe;
+    }
   }
 
   .button {
     @include text(Roboto, 20px, 16px, 500);
-    border: none;
     background-color: inherit;
     width: 30px;
     height: 30px;
     cursor: pointer;
+    border: 1px solid white;
+    &:hover {
+      border: 1px solid grey;
+      background-color: #bebebe;
+    }
   }
 }
 

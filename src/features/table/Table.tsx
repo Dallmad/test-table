@@ -82,7 +82,7 @@ export const Table = memo((): ReturnComponentType => {
           </tbody>
         )}
       </table>
-      <div>
+      <div className={style.button}>
         <button onClick={() => setShowModalForAddItem(true)} type="button">
           Добавить запись
         </button>
