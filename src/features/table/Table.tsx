@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import style from './Table.module.scss';
 
@@ -8,12 +8,12 @@ import { FiltrationType, ReturnComponentType, TableType } from 'common';
 import { Modal, Paginator } from 'components';
 import { AddItem, TableHeader, TableRow, Filtration } from 'features';
 import { useFiltration, usePagination, useSort } from 'hooks';
-import { AppRootStateType, fetchItems, setFiltration } from 'state';
+import { AppRootStateType, fetchItems, setFiltration, useTypedDispatch } from 'state';
 
 const CONTENT_PER_PAGE = 6;
 
 export const Table = memo((): ReturnComponentType => {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   const items = useSelector<AppRootStateType, TableType>(state => state.table.table);
   const sort = useSelector<AppRootStateType, string>(state => state.table.sort);
@@ -37,7 +37,7 @@ export const Table = memo((): ReturnComponentType => {
   };
 
   useEffect(() => {
-    dispatch(fetchItems() as any);
+    dispatch(fetchItems());
   }, []);
 
   return (

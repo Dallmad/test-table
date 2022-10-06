@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
@@ -16,8 +16,6 @@ export const TableHeader = (): ReturnComponentType => {
 
     dispatch(setSort(sorted));
   };
-
-  useEffect(() => {}, []);
 
   return (
     <tr>
