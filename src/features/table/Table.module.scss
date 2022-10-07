@@ -1,5 +1,4 @@
 @import 'src/common/styles/mixins';
-@import 'src/common/styles/variables';
 
 .container {
   display: flex;
@@ -8,6 +7,10 @@
   align-items: center;
   @include text(Roboto, 20px, 16px, 500);
   cursor: default;
+
+  .download {
+    @include text(Roboto, 26px, 22px, 700);
+  }
 
   .table {
     width: 80%;
@@ -22,9 +25,11 @@
       border: 2px solid #ababab;
       width: 200px;
       cursor: pointer;
+
       &:hover {
         background-color: #bebebe;
       }
+
       &:first-child {
         cursor: default;
         background-color: #efefef;
@@ -49,6 +54,7 @@
       border: 2px solid #ababab;
       border-radius: 5px;
       cursor: pointer;
+
       &:hover {
         background-color: #bebebe;
       }

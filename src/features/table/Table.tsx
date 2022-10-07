@@ -42,6 +42,7 @@ export const Table = memo((): ReturnComponentType => {
 
   return (
     <div className={style.container}>
+      {!items.length && <div className={style.download}>Загрузка...</div>}
       <table className={style.table}>
         <thead>
           <TableHeader />
