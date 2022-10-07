@@ -42,7 +42,6 @@ export const Table = memo((): ReturnComponentType => {
 
   return (
     <div className={style.container}>
-      {!items.length && <div className={style.download}>Загрузка...</div>}
       <table className={style.table}>
         <thead>
           <TableHeader />
@@ -107,6 +106,7 @@ export const Table = memo((): ReturnComponentType => {
         <Filtration editShowModal={setShowModalForFiltration} />
       </Modal>
       <Paginator page={page} setPage={setPage} totalPages={totalPages} />
+      {!items.length && <div className={style.download}>Загрузка...</div>}
     </div>
   );
 });
